@@ -1,18 +1,19 @@
 import React, { ReactNode } from 'react'
 
 interface CardProps {
-  children: ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
+  onClick?: () => void;  // Add this line
 }
 
-export function Card({ children, className = '' }: CardProps) {
+
+export const Card: React.FC<CardProps> = ({ children, className, onClick }) => {
   return (
-    <div className={`bg-white rounded-lg shadow-md overflow-hidden ${className}`}>
+    <div className={className} onClick={onClick}>
       {children}
     </div>
-  )
-}
-
+  );
+};
 export function CardContent({ children, className = '' }: CardProps) {
   return (
     <div className={`p-6 ${className}`}>

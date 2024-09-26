@@ -1,0 +1,48 @@
+/* Side navigation container */
+.side-nav {
+    background-color: #776FA8;
+    padding: 1rem;
+    width: 5rem; /* Default collapsed width */
+    transition: width 0.3s ease-in-out;
+  }
+  
+  /* Expanded state of the side navigation */
+  .side-nav.expanded {
+    width: 16rem;
+  }
+  
+  /* Navigation item styles */
+  .nav-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover effect for nav items */
+  .nav-item:hover {
+    background-color: #21193B;
+  }
+  
+  /* Icon styling */
+  .nav-icon {
+    width: 2.5rem; /* Larger icon size */
+    height: 2.5rem; 
+    margin-right: 1rem;
+  }
+  
+  /* Text that shows only when expanded */
+  .nav-text {
+    margin-left: 1rem;
+    display: none;
+  }
+  
+  /* Show the text when the side-nav is expanded */
+  .side-nav.expanded .nav-text {
+    display: inline;
+  }
+  

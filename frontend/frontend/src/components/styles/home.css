@@ -1,5 +1,6 @@
-/* Container */
-.container {
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap');
+
+.home-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -7,179 +8,178 @@
   color: #21193B;
 }
 
-/* Header */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+header {
   background-color: #21193B;
   color: white;
-  padding: 16px;
-}
-
-.logo-container {
-  flex: 1;
-  display: flex;
-  justify-content: center;
+  padding: 1rem;
+  text-align: center;
 }
 
 .logo {
-  height: 48px;
+  font-family: 'Arvo', serif;
+  font-weight: 700;
+  font-size: 1.875rem;
+  text-transform: lowercase;
 }
 
-.user-icon {
-  flex: 1;
+.main-content {
   display: flex;
-  justify-content: flex-end;
+  flex-grow: 1;
 }
 
-/* Navbar */
-.navbar {
+.side-nav {
   background-color: #776FA8;
-  padding: 16px;
+  padding: 1rem;
+  width: 5rem;
+  transition: width 0.3s ease-in-out;
 }
 
-.nav-links {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
+.side-nav.expanded {
+  width: 16rem;
 }
 
 .nav-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
   color: white;
   text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
 }
 
 .nav-item:hover {
-  color: #D4D3E6;
+  background-color: #21193B;
 }
 
-.active {
-  font-weight: bold;
+.nav-icon {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
-/* Main */
-.main {
+.nav-text {
+  margin-left: 1rem;
+  display: none;
+}
+
+.side-nav.expanded .nav-text {
+  display: inline;
+}
+
+main {
   flex-grow: 1;
+  padding: 2rem;
+}
+
+.chat-section {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 32px;
+  margin-bottom: 2rem;
 }
 
-.intro {
-  text-align: center;
-  margin-bottom: 32px;
+.character-container {
+  width: 30%;
+  padding-right: 2rem;
 }
 
-.intro-logo {
-  width: 192px;
-  height: 192px;
-  margin-bottom: 16px;
-}
-
-.title {
-  font-size: 36px;
-  font-weight: bold;
-  margin-bottom: 16px;
-}
-
-.subtitle {
-  font-size: 20px;
-  max-width: 600px;
+.character-image {
+  width: 100%;
+  max-width: 20rem;
   margin: 0 auto;
 }
 
-/* AI Chat Card */
-.ai-chat-card {
+.character-image.flipped {
+  transform: scaleX(-1); /* This flips the image horizontally */
+}
+
+
+.chat-container {
+  width: 70%;
+}
+
+.chat-box {
   background-color: #776FA8;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.chat-header {
+  background-color: #5D5686;
   color: white;
-  width: 100%;
-  max-width: 800px;
-  margin-bottom: 32px;
+  padding: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
-.ai-chat-content {
+.chat-messages {
+  height: 16rem;
+  background-color: #21193B;
+  color: white;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.placeholder-message {
+  color: #a0aec0;
+}
+
+.chat-input {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 32px;
+  padding: 1rem;
 }
 
-.ai-chat-icon {
-  height: 64px;
-  width: 64px;
-  margin-bottom: 16px;
-}
-
-.ai-chat-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 16px;
-}
-
-.ai-chat-subtitle {
-  text-align: center;
-  font-size: 18px;
-  margin-bottom: 24px;
-}
-
-.ai-chat-button {
+.message-input {
+  flex-grow: 1;
   background-color: white;
-  color: #776FA8;
-  font-size: 18px;
-  padding: 12px 24px;
+  color: #21193B;
   border: none;
+  border-radius: 0.25rem 0 0 0.25rem;
+  padding: 0.5rem 1rem;
+}
+
+.message-input:focus {
+  outline: none;
+}
+
+.send-button {
+  background-color: #21193B;
+  color: white;
+  border: none;
+  border-radius: 0 0.25rem 0.25rem 0;
+  padding: 0.5rem 1rem;
   cursor: pointer;
 }
 
-.ai-chat-button:hover {
-  background-color: #D4D3E6;
+.send-button:hover {
+  background-color: #2c2351;
 }
 
-/* Features Grid */
+.send-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
 .features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  width: 100%;
-  max-width: 800px;
+  gap: 1rem;
 }
 
 .feature-card {
   background-color: #776FA8;
   color: white;
-}
-
-.feature-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 16px;
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 
 .feature-icon {
-  height: 32px;
-  width: 32px;
-  margin-bottom: 8px;
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 0.5rem;
 }
 
-.feature-title {
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-.feature-description {
-  text-align: center;
-  font-size: 12px;
-}
-
-/* Footer */
-.footer {
+footer {
   background-color: #21193B;
   color: white;
-  padding: 16px;
+  padding: 1rem;
   text-align: center;
 }
