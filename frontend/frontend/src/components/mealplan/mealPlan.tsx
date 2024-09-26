@@ -1,21 +1,12 @@
 import React, { useState } from 'react';
 import { Button } from "../common/Button.tsx";
 import { Card, CardContent } from "../common/Card.tsx";
-import { User, Dumbbell, Utensils, FileText, MessageCircle, Home, ChevronDown, Check } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Check } from 'lucide-react';
+import NavBar from '../common/NavBar.tsx'; // Import NavBar component
 import '../styles/mealPlan.css'; // Import the CSS file
 
 export default function MealPlanPage() {
-  const [expandedMenu, setExpandedMenu] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<number | null>(null);
-
-  const navItems = [
-    { icon: <Home className="navIcon" />, shortName: "Home", fullName: "Dashboard" },
-    { icon: <Dumbbell className="navIcon" />, shortName: "Work", fullName: "Workouts" },
-    { icon: <Utensils className="navIcon" />, shortName: "Meal", fullName: "Meal Plans" },
-    { icon: <MessageCircle className="navIcon" />, shortName: "Chat", fullName: "AI Chat" },
-    { icon: <FileText className="navIcon" />, shortName: "Prog", fullName: "Progress" },
-  ];
 
   const mealPlans = [
     { id: 1, name: "Weight Loss", description: "Calorie-controlled plan for effective weight loss" },
@@ -31,20 +22,8 @@ export default function MealPlanPage() {
       </header>
 
       <div className="content">
-        <nav 
-          className={`nav ${expandedMenu ? 'expanded' : ''}`}
-          onMouseEnter={() => setExpandedMenu(true)}
-          onMouseLeave={() => setExpandedMenu(false)}
-        >
-          {navItems.map((item, index) => (
-            <Link to={`/${item.shortName.toLowerCase()}`} key={index}>
-              <div className="navItem">
-                {item.icon}
-                <span className={`navText ${expandedMenu ? 'visible' : ''}`}>{item.fullName}</span>
-              </div>
-            </Link>
-          ))}
-        </nav>
+        {/* Use NavBar component here instead of inline navigation */}
+        <NavBar />
 
         <main className="main">
           <h2 className="pageTitle">AI-Powered Meal Plans</h2>

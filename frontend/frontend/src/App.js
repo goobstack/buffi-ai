@@ -6,6 +6,7 @@ import HomePage from './components/home/homePage.tsx';
 import WorkoutPlan from './components/workoutplan/workout-plan.tsx';
 import ChatInterface from './components/chat/chatInterface.tsx';
 import MealPlanPage from './components/mealplan/mealPlan.tsx';
+import ProfilePage from './components/profile/profileDetails.tsx';
 
 
 
@@ -21,6 +22,8 @@ function App() {
         <Route path="/work" element={<WorkoutPlan />} />
         <Route path="/chat" element={<ChatInterface/>} />
         <Route path="/plan" element={<MealPlanPage/>} />
+        <Route path="/prof" element={<ProfilePage/>} />
+
 
         {/* Add other routes here as needed */}
       </Routes>

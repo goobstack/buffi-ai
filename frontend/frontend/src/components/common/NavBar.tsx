@@ -1,6 +1,6 @@
 // src/components/NavBar.tsx
 import React, { useState } from 'react';
-import { Home, Dumbbell, Utensils, MessageCircle, BarChart2 } from 'lucide-react';
+import { Home, Dumbbell, Utensils, MessageCircle, BarChart2, User } from 'lucide-react';
 import '../styles/navBar.css'; // Or create a new CSS file for NavBar if needed
 
 const NavBar: React.FC = () => {
@@ -12,6 +12,7 @@ const NavBar: React.FC = () => {
     { icon: <Utensils className="nav-icon" />, shortName: "Plan", fullName: "Meal Plans" },
     { icon: <MessageCircle className="nav-icon" />, shortName: "Chat", fullName: "AI Chat" },
     { icon: <BarChart2 className="nav-icon" />, shortName: "Prog", fullName: "Progress" },
+    { icon: <User className="nav-icon" />, shortName: "Prof", fullName: "Profile" }
   ];
 
   return (

@@ -1,0 +1,136 @@
+.profile-page {
+    display: flex;
+    min-height: 100vh;
+    background-color: #D4D3E6; /* Soft background color */
+    font-family: 'Arvo', serif;
+    color: #21193B;
+}
+
+/* Sidebar styling */
+.profile-sidebar {
+    width: 250px;
+    background-color: #21193B; /* Dark purple to match nav bar */
+    padding: 2rem;
+}
+
+.profile-sidebar nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-sidebar button {
+    background: none;
+    border: none;
+    color: #B8B5D1; /* Lighter text for sidebar options */
+    text-align: right;
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.profile-sidebar button:hover,
+.profile-sidebar button.active {
+    background-color: #776FA8; /* Light purple on hover */
+    color: white;
+}
+
+.profile-sidebar button svg {
+    margin-right: 0.5rem;
+}
+
+/* Profile content styling */
+.profile-content {
+    flex-grow: 1;
+    padding: 2rem;
+    background-color: white; /* Light background for contrast */
+    border-radius: 8px;
+    margin: 1rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-out;
+    overflow-y: auto;
+}
+
+.profile-content h1 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #21193B;
+}
+
+.profile-content h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: #21193B;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #21193B;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #B8B5D1;
+    border-radius: 8px;
+    background-color: #F5F5F5; /* Light gray input background */
+    color: #21193B;
+    font-size: 1rem;
+}
+
+input::placeholder, select::placeholder, textarea::placeholder {
+    color: #B8B5D1;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+/* Save button styling */
+.submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #21193B; /* Dark purple */
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 2rem;
+}
+
+.submit-button:hover {
+    background-color: #2c2351;
+}
+
+.icon {
+    margin-right: 0.5rem;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.profile-content {
+    animation: slideIn 0.3s ease-out;
+}
