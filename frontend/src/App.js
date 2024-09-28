@@ -7,6 +7,7 @@ import WorkoutPlan from './components/workoutplan/workout-plan.tsx';
 import ChatInterface from './components/chat/chatInterface.tsx';
 import MealPlanPage from './components/mealplan/mealPlan.tsx';
 import ProfilePage from './components/profile/profileDetails.tsx';
+import ProgressPage from './components/progress/Progress.tsx';
 
 
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/chat" element={<ChatInterface/>} />
         <Route path="/plan" element={<MealPlanPage/>} />
         <Route path="/prof" element={<ProfilePage/>} />
+        <Route path="/prog" element={<ProgressPage/>} />
 
 
         {/* Add other routes here as needed */}

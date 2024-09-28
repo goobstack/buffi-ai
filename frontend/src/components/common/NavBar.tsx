@@ -1,7 +1,6 @@
-// src/components/NavBar.tsx
 import React, { useState } from 'react';
 import { Home, Dumbbell, Utensils, MessageCircle, BarChart2, User } from 'lucide-react';
-import '../styles/navBar.css'; // Or create a new CSS file for NavBar if needed
+import '../styles/navBar.css'; 
 
 const NavBar: React.FC = () => {
   const [expandedMenu, setExpandedMenu] = useState(false);

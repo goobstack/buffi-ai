@@ -1,0 +1,41 @@
+.side-nav {
+  background-color: #776FA8;
+  padding: 1rem;
+  width: 5rem;
+  transition: width 0.3s ease-in-out;
+  height: 100vh;
+}
+
+.side-nav.expanded {
+  width: 16rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.nav-item:hover {
+  background-color: #5D5686;
+}
+
+.nav-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.nav-text {
+  margin-left: 1rem;
+  display: none;
+  color: white;
+}
+
+.side-nav.expanded .nav-text {
+  display: inline;
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Send } from 'lucide-react';
 import NavBar from '../common/NavBar.tsx'; // Import NavBar
 import '../styles/chatInterface.css'; // Import the CSS file
+import PORT from '../../serverPort.js';
 
 interface Message {
   text: string;
@@ -12,15 +13,44 @@ const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState('');
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (inputMessage.trim()) {
-      setMessages([...messages, { text: inputMessage, sender: 'user' }]);
+      const userMessage = inputMessage;
+      setMessages([...messages, { text: userMessage, sender: 'user' }]);
       setInputMessage('');
-      // Simulate AI response
-      setTimeout(() => {
-        setMessages(prevMessages => [...prevMessages, { text: "This is a simulated AI response.", sender: 'ai' }]);
-      }, 1000);
+
+      try {
+        const response = await fetch(`http://localhost:${PORT}/api/chat`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: userMessage }),
+        });
+
+        const data = await response.json();
+        setMessages(prevMessages => [
+          ...prevMessages,
+          { 
+            text: typeof data.message === 'string' ? data.message : 'AI response error', 
+            sender: 'ai' 
+          }
+        ]);        
+      } catch (error) {
+        console.error('Error:', error);
+        setMessages(prevMessages => [
+          ...prevMessages,
+          { text: 'Error: Could not connect to AI', sender: 'ai' }
+        ]);
+      }
     }
+  };
+
+  // Function to display AI messages with line breaks
+  const renderMessage = (message: string) => {
+    return message.split('\n').map((line, index) => (
+      <p key={index}>{line}</p>
+    ));
   };
 
   return (
@@ -40,7 +70,7 @@ const ChatInterface: React.FC = () => {
               ) : (
                 messages.map((message, index) => (
                   <div key={index} className={`message ${message.sender}`}>
-                    {message.text}
+                    {message.sender === 'ai' ? renderMessage(message.text) : message.text}
                   </div>
                 ))
               )}
