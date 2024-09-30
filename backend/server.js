@@ -12,7 +12,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const OPENAI_API_KEY = fs.readFileSync('../openai_api_key.txt', 'utf8').trim();
+const OPENAI_API_KEY = fs.readFileSync('../../aws crds/openai_api_key.txt', 'utf8').trim();
+
 let assistantId = null; // Store the assistant_id after creation
 
 // Database configuration using environment variables
