@@ -1,106 +1,196 @@
-:root {
-    --background-color: #D4D3E6; /* Match the homepage background */
-    --card-background: #776FA8;  /* Use the same card background */
-    --accent-color: #21193B; /* Use dark purple as the accent color */
-    --text-color: #FFFFFF; /* White text */
-    --secondary-text-color: #B8B8D1; /* Lighter text */
-}
+.home-page {
+    background-color: #E0DEF8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
   
-body {
-    font-family: 'Arvo', sans-serif;
-    background-color: var(--background-color);
-    color: var(--accent-color);
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-}
-  
-.workout-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-  
-.workout-title {
-    color: var(--accent-color); /* Use accent color */
+  .logo {
+    color: #EDEB8F;
     text-align: center;
-    margin-bottom: 2rem;
+    padding: 1rem 0;
     font-size: 2.5rem;
-}
+  }
   
-.plan-select {
-    display: block;
+  .main-content {
+    display: flex;
+    flex: 1;
+  }
+  
+  .workout-container {
+    flex: 1;
+    padding: 2rem;
+  }
+  
+  .workout-title {
+    color: #EDEB8F;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+  }
+  
+  .select-container {
+    position: relative;
     width: 100%;
     max-width: 300px;
     margin: 0 auto 2rem;
-    padding: 0.75rem;
-    font-size: 1rem;
-    border: 2px solid var(--accent-color);
-    border-radius: 20px;
-    background-color: var(--card-background); /* Match card background */
-    color: var(--text-color); /* White text */
+  }
+  
+  .select-button {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background-color: #9181C6;
+    color: #F6F2F9;
+    border: 2px solid #4B3F72;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     cursor: pointer;
-}
+  }
   
-.workout-grid {
+  .select-icon {
+    transition: transform 0.3s ease;
+  }
+  
+  .select-icon.rotate {
+    transform: rotate(180deg);
+  }
+  
+  .select-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #9181C6;
+    border: 2px solid #4B3F72;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    z-index: 10;
+  }
+  
+  .select-options button {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: #F6F2F9;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .select-options button:hover {
+    background-color: #4B3F72;
+  }
+  
+  .workout-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
-    margin-bottom: 2rem;
-}
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
   
-.workout-card {
-    background-color: var(--card-background); /* Match card background */
-    border-radius: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+  .workout-card {
+    background-color: #5F5081;
+    border-radius: 8px;
+    overflow: hidden;
+  }
   
-.workout-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
+  .workout-card-header {
+    background-color: #4B3F72;
+    padding: 1rem;
+    cursor: pointer;
+  }
   
-.workout-day {
-    color: var(--accent-color); /* Accent color */
-    margin-top: 0;
-    font-size: 1.5rem;
-}
+  .workout-day {
+    color: #EDEB8F;
+    margin: 0;
+    font-size: 1.2rem;
+  }
   
-.workout-focus {
-    color: var(--secondary-text-color); /* Lighter secondary text */
-    margin-bottom: 0.5rem;
-}
+  .workout-focus {
+    color: #F6F2F9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
   
-.workout-exercises {
+  .workout-card-content {
+    padding: 1rem;
+  }
+  
+  .workout-exercises {
     list-style-type: none;
     padding: 0;
-}
+    margin: 0;
+  }
   
-.workout-exercises li {
+  .workout-exercises li {
+    display: flex;
+    align-items: center;
+    color: #F6F2F9;
     margin-bottom: 0.5rem;
-}
+  }
   
-.progress-card {
-    background-color: var(--accent-color); /* Accent color */
-    color: var(--text-color); /* White text */
-    border-radius: 20px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+  .workout-exercises li svg {
+    margin-right: 0.5rem;
+    color: #EDEB8F;
+  }
   
-.progress-title {
-    margin-top: 0;
-    font-size: 1.5rem;
-}
+  .exercise-details {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #9181C6;
+  }
   
-.progress-text {
-    margin-bottom: 0;
-}
+  .exercise-detail {
+    background-color: #4B3F72;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+  }
   
-@media (max-width: 768px) {
+  .exercise-detail h4 {
+    color: #EDEB8F;
+    margin: 0 0 0.5rem;
+  }
+  
+  .exercise-detail p {
+    color: #F6F2F9;
+    margin: 0.25rem 0;
+  }
+  
+  .progress-card {
+    margin-top: 2rem;
+    background-color: #4B3F72;
+    color: #F6F2F9;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .progress-card-header {
+    background-color: #2A274D;
+    padding: 1rem;
+  }
+  
+  .progress-card-header h3 {
+    color: #EDEB8F;
+    margin: 0;
+  }
+  
+  .progress-card-content {
+    padding: 1rem;
+  }
+  
+  footer {
+    background-color: #2A274D;
+    color: #F6F2F9;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  @media (max-width: 768px) {
     .workout-grid {
-        grid-template-columns: 1fr;
+      grid-template-columns: 1fr;
     }
-}
+  }

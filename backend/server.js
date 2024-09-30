@@ -3,11 +3,11 @@ const axios = require('axios');
 const dotenv = require('dotenv');
 const fs = require('fs');
 const cors = require('cors');
-const mysql = require('mysql2');  // MySQL2 package
-const PORT = require('../frontend/src/serverPort');
+const mysql = require('mysql2');
+const bcrypt = require('bcrypt');  // bcrypt for password hashing
+const PORT = require('../frontend/src/serverPort')
 
 dotenv.config();
-
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -33,7 +33,6 @@ db.connect((err) => {
   console.log('Connected to the database as id ' + db.threadId);
 });
 
-
 // Logging function to calculate API cost
 const logApiCost = (tokensUsed, role) => {
   const inputCost = 0.150 / 1000;
@@ -44,6 +43,7 @@ const logApiCost = (tokensUsed, role) => {
     `Estimated cost for ${tokensUsed} ${role === 'user' ? 'input' : 'output'} tokens: $${totalCost.toFixed(6)}`
   );
 };
+
 // Function to create the assistant
 const createAssistant = async () => {
   try {
@@ -51,8 +51,7 @@ const createAssistant = async () => {
       'https://api.openai.com/v1/assistants',
       {
         name: 'AI Personal Trainer',
-        instructions:
-          'You are a personal trainer. Help users with workout routines, fitness goals, and diet plans.',
+        instructions: 'You are a personal trainer. Help users with workout routines, fitness goals, and diet plans.',
         model: 'gpt-3.5-turbo', // Updated model name
       },
       {
@@ -78,6 +77,7 @@ app.use(async (req, res, next) => {
   next();
 });
 
+// ChatGPT API interaction route
 app.post('/api/chat', async (req, res) => {
   const { message } = req.body;
 
@@ -120,7 +120,7 @@ app.post('/api/chat', async (req, res) => {
     const runResponse = await axios.post(
       `https://api.openai.com/v1/threads/${threadId}/runs`,
       {
-        assistant_id: assistantId, // Include assistant_id in the request body
+        assistant_id: assistantId,
       },
       {
         headers: {
@@ -137,11 +137,11 @@ app.post('/api/chat', async (req, res) => {
     const maxPollTime = 15000; // 15 seconds
     const pollInterval = 1000; // 1 second polling
     let pollTime = 0;
-    
+
     while (runStatus !== 'completed' && runStatus !== 'failed' && pollTime < maxPollTime) {
-      await new Promise((resolve) => setTimeout(resolve, pollInterval)); 
+      await new Promise((resolve) => setTimeout(resolve, pollInterval));
       pollTime += pollInterval;
-    
+
       const runStatusResponse = await axios.get(
         `https://api.openai.com/v1/threads/${threadId}/runs/${runId}`,
         {
@@ -154,6 +154,7 @@ app.post('/api/chat', async (req, res) => {
       runStatus = runStatusResponse.data.status;
       console.log(`Run status: ${runStatus}`);
     }
+
     // Handle run failure
     if (runStatus === 'failed') {
       console.error('Run failed');
@@ -187,20 +188,18 @@ app.post('/api/chat', async (req, res) => {
       throw new Error('No messages found in the response');
     }
 
-    // Find the assistant's reply
     const assistantMessage = messages.find((msg) => msg.role === 'assistant');
     if (!assistantMessage) {
       throw new Error('No assistant response found');
     }
 
-    // Process content if it's an array and remove conversational elements
     let aiResponse = '';
 
     if (Array.isArray(assistantMessage.content)) {
       aiResponse = assistantMessage.content
-        .map(item => item.text?.value || '')
+        .map((item) => item.text?.value || '')
         .join('')
-        .replace(/Remember.+/g, ''); // Remove conversational parts like "Remember"
+        .replace(/Remember.+/g, '');
     } else if (typeof assistantMessage.content === 'string') {
       aiResponse = assistantMessage.content.replace(/Remember.+/g, '');
     } else {
@@ -212,7 +211,6 @@ app.post('/api/chat', async (req, res) => {
 
     console.log('AI response:', aiResponse);
 
-    // Format the response for better readability
     const formattedResponse = aiResponse
       .replace(/Day/g, '\nDay')
       .replace(/Meal Plan:/g, '\n\nMeal Plan:\n')
@@ -225,5 +223,60 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
+// Sign up route
+app.post('/signup', async (req, res) => {
+  const { name, email, password, dateOfBirth, gender } = req.body;
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  try {
+    const userExists = await db.promise().query('SELECT * FROM Users WHERE email = ?', [email]);
+    if (userExists[0].length > 0) {
+      return res.status(400).json({ message: 'User already exists' });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const query = `INSERT INTO Users (name, email, password_hash, date_of_birth, gender) VALUES (?, ?, ?, ?, ?)`;
+    await db.promise().query(query, [name, email, hashedPassword, dateOfBirth, gender]);
+
+    res.status(201).json({ message: 'User registered successfully' });
+  } catch (error) {
+    console.error('Error during sign-up:', error);
+    res.status(500).json({ message: 'Error registering user' });
+  }
+});
+
+// Login route
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const userResult = await db.promise().query('SELECT * FROM Users WHERE email = ?', [email]);
+    const user = userResult[0][0];
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password_hash);
+    if (!passwordMatch) {
+      return res.status(401).json({ message: 'Incorrect password' });
+    }
+
+    res.status(200).json({
+      message: 'Login successful',
+      user: {
+        id: user.user_id,
+        name: user.name,
+        email: user.email,
+      },
+    });
+  } catch (error) {
+    console.error('Error during login:', error);
+    res.status(500).json({ message: 'Error logging in' });
+  }
+});
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

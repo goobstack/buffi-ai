@@ -1,0 +1,102 @@
+/* General form styles */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #E0DEF8; /* Light background */
+}
+
+.signup-form {
+  background-color: #4B3F72; /* Dark purple form background */
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  max-width: 90%;
+}
+
+.signup-form h2 {
+  color: #EDEB8F; /* Light yellow title color */
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  color: #F6F2F9; /* Light text color */
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #9181C6; /* Light purple border */
+  border-radius: 6px;
+  background-color: #5F5081; /* Input background color */
+  color: #F6F2F9; /* Input text color */
+}
+
+/* Button styles */
+.signup-button, .next-button, .skip-button {
+  background-color: #7662B3;
+  color: #F6F2F9;
+  border: none;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.signup-button:hover, .next-button:hover, .skip-button:hover {
+  background-color: #9181C6;
+}
+
+/* Hide inactive step */
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+}
+
+/* Dialog box */
+.dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dialog-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.dialog-button {
+  margin: 5px;
+  padding: 10px;
+  background-color: #4B3F72;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.dialog-button:hover {
+  background-color: #7662B3;
+}

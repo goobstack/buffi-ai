@@ -1,0 +1,82 @@
+/* Background setup */
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: #E0DEF8; /* Light purple background from your palette */
+    font-family: 'Arial', sans-serif;
+}
+
+/* Main login container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-box {
+    background-color: #4B3F72; /* Primary dark purple background */
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    max-width: 90%;
+}
+
+/* Title styling */
+.login-title {
+    font-size: 2rem;
+    text-align: center;
+    color: #EDEB8F; /* Light yellow font color */
+    margin-bottom: 1.5rem;
+}
+
+/* Input group */
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-label {
+    display: block;
+    font-size: 1rem;
+    color: #F6F2F9; /* Light font color for labels */
+    margin-bottom: 0.5rem;
+}
+
+/* Input field styling */
+.input-field {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #9181C6; /* Border color */
+    border-radius: 6px;
+    background-color: #5F5081; /* Input background color */
+    color: #F6F2F9; /* Text color */
+}
+
+.input-field:focus {
+    border-color: #EDEB8F; /* Focus color for input */
+    outline: none;
+}
+
+/* Login button */
+.login-button {
+    background-color: #7662B3; /* Button color */
+    color: #F6F2F9; /* Button text color */
+    border: none;
+    padding: 0.75rem;
+    width: 100%;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #9181C6; /* Button hover effect */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .login-box {
+        width: 90%;
+    }
+}

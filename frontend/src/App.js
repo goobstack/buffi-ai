@@ -8,6 +8,8 @@ import ChatInterface from './components/chat/chatInterface.tsx';
 import MealPlanPage from './components/mealplan/mealPlan.tsx';
 import ProfilePage from './components/profile/profileDetails.tsx';
 import ProgressPage from './components/progress/Progress.tsx';
+import LoginPage from './components/login/loginPage.tsx';
+import SignupPage from './components/signup/signupPage.tsx';
 
 
 
@@ -25,6 +27,10 @@ function App() {
         <Route path="/plan" element={<MealPlanPage/>} />
         <Route path="/prof" element={<ProfilePage/>} />
         <Route path="/prog" element={<ProgressPage/>} />
+        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/signup" element={<SignupPage/>} />
+
+
 
 
         {/* Add other routes here as needed */}
